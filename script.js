@@ -1,9 +1,9 @@
 const images = [
-    'C:/Users/efloresa/Downloads/1.jpeg',
-    'C:/Users/efloresa/Downloads/2.jpeg',
-    'C:/Users/efloresa/Downloads/3.jpeg',
-    'C:/Users/efloresa/Downloads/familia.jpeg',
-    'C:/Users/efloresa/Downloads/3.jpeg'
+    './img/1.jpeg',
+    './img/2.jpeg',
+    './img/3.jpeg',
+    './img/familia.jpeg',
+    './img/4.jpeg'
   ];
   
   const carousel = document.querySelector('#carousel');
