@@ -22,7 +22,7 @@ const createImg = () => {
     img.src = images[currentIndex];
     img.alt = `Imagen ${currentIndex + 1}`;
     img.style.animationName = 'fade';
-    img.style.animationDuration = '2s';
+    img.style.animationDuration = '4s';
     img.style.width = "100%";
     img.style.height = "100%";
     carousel.appendChild(img);
