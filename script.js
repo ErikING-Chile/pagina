@@ -1,73 +1,34 @@
-$(function () {
- $(".menu-link").click(function () {
-  $(".menu-link").removeClass("is-active");
-  $(this).addClass("is-active");
- });
-});
+// Some code thanks to @chrisgannon
 
-$(function () {
- $(".main-header-link").click(function () {
-  $(".main-header-link").removeClass("is-active");
-  $(this).addClass("is-active");
- });
-});
+var select = function(s) {
+  return document.querySelector(s);
+}
 
-const dropdowns = document.querySelectorAll(".dropdown");
-dropdowns.forEach((dropdown) => {
- dropdown.addEventListener("click", (e) => {
-  e.stopPropagation();
-  dropdowns.forEach((c) => c.classList.remove("is-active"));
-  dropdown.classList.add("is-active");
- });
-});
+function randomBetween(min,max)
+{
+    var number = Math.floor(Math.random()*(max-min+1)+min);
+  
+    if ( number !== 0 ){
+      return number;
+    }else {
+      return 0.5;
+    }
+}
 
-$(".search-bar input")
- .focus(function () {
-  $(".header").addClass("wide");
- })
- .blur(function () {
-  $(".header").removeClass("wide");
- });
+var tl = new TimelineMax();
 
-$(document).click(function (e) {
- var container = $(".status-button");
- var dd = $(".dropdown");
- if (!container.is(e.target) && container.has(e.target).length === 0) {
-  dd.removeClass("is-active");
- }
-});
+for(var i = 0; i < 20; i++){
 
-$(function () {
- $(".dropdown").on("click", function (e) {
-  $(".content-wrapper").addClass("overlay");
-  e.stopPropagation();
- });
- $(document).on("click", function (e) {
-  if ($(e.target).is(".dropdown") === false) {
-   $(".content-wrapper").removeClass("overlay");
-  }
- });
-});
+  var t = TweenMax.to(select('.bubble' + i), randomBetween(1, 1.5), {
+    x: randomBetween(12, 15) * (randomBetween(-1, 1)),
+    y: randomBetween(12, 15) * (randomBetween(-1, 1)), 
+    repeat:-1,
+    repeatDelay:randomBetween(0.2, 0.5),
+    yoyo:true,
+    ease:Elastic.easeOut.config(1, 0.5)
+  })
 
-$(function () {
- $(".status-button:not(.open)").on("click", function (e) {
-  $(".overlay-app").addClass("is-active");
- });
- $(".pop-up .close").click(function () {
-  $(".overlay-app").removeClass("is-active");
- });
-});
+  tl.add(t, (i+1)/0.6)
+}
 
-$(".status-button:not(.open)").click(function () {
- $(".pop-up").addClass("visible");
-});
-
-$(".pop-up .close").click(function () {
- $(".pop-up").removeClass("visible");
-});
-
-const toggleButton = document.querySelector('.dark-light');
-
-toggleButton.addEventListener('click', () => {
-  document.body.classList.toggle('light-mode');
-});
+tl.seek(50);
