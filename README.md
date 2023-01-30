@@ -1,2 +1,2 @@
 # pagina
-Pagina familiar
+Pagina
